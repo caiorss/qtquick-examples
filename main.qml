@@ -5,45 +5,79 @@ import QtQuick.Layouts 1.3 // RowLayout
 
 import ToDo 1.0
 
-Frame {
+ColumnLayout {
+
     width:  400
     height: 500
 
-    ListView {
-        implicitWidth:  250;
-        implicitHeight: 250;
-        clip: true
+    Frame {
+        Layout.fillWidth: true
 
-        /* Sample Model for the list view */
-        model: TodoModel {
-            list: toDoList
-        }
+        ListView {
+            implicitWidth:  250;
+            implicitHeight: 250;
+            anchors.fill: parent
+            clip: true
 
-        // Row layout configuration
-        // (Field, followed by a CheckBox)
-        // [ ] ________________
-        delegate: RowLayout {
-            width: parent.width
-            // CheckBox column 0 of current row
-
-            CheckBox {
-                // Conect Checkbox property: CheckBox.checked to
-                // model property model.done
-                checked: model.done
-
-                onClicked: model.done = checked
+            /* Sample Model for the list view */
+            model: TodoModel {
+                list: toDoList
             }
-            // TextField column 1 of current row
-            TextField {
-                Layout.fillWidth: true
-                text: model.description
 
-                onEditingFinished: model.description = text
+            // Row layout configuration
+            // (Field, followed by a CheckBox)
+            // [ ] ________________
+            delegate: RowLayout {
+                width: parent.width
+                // CheckBox column 0 of current row
+
+                CheckBox {
+                    // Conect Checkbox property: CheckBox.checked to
+                    // model property model.done
+                    checked: model.done
+
+                    onClicked: model.done = checked
+                }
+                // TextField column 1 of current row
+                TextField {
+                    Layout.fillWidth: true
+                    text: model.description
+
+                    onEditingFinished: model.description = text
+                }
+            }
+
+            // model: 100
+
+        } // -- End of ListView --- //
+
+    } // --- End of Frame --- //
+
+    RowLayout {
+        Button{
+            text: "Add new Items   "
+            Layout.fillWidth: true
+            onClicked: {
+                console.log("Button 'Add new Items' clicked")
+                toDoList.appendItem()
             }
         }
+        Button{
+            text: "Remove completed  "
+            Layout.fillWidth: true
+            onClicked: {
+                console.log("Button 'remove clompled 'clicked.")
+                toDoList.removeCompletedItems()
+            }
+        }
+        Button{
+            text: "Exit"
+            Layout.fillWidth: true
+            onClicked: {
+                console.log("Button Exit clicked")
+                Qt.quit()
+            }
+        }
+    }
 
-        // model: 100
-
-    } // -- End of ListView --- //
-
-}
+} // --- End of ColumnLayout --- //
