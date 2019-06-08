@@ -3,6 +3,7 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3 // RowLayout
 // import io.qt.examples.quick.controls.filesystembrowser 1.0
 
+import ToDo 1.0
 
 Frame {
     width:  400
@@ -14,22 +15,8 @@ Frame {
         clip: true
 
         /* Sample Model for the list view */
-        model: ListModel {
-            ListElement {
-                done: true
-                description: "Buy Groceries"
-            }
-
-            ListElement {
-                done: false
-                description: "Reinstall system"
-            }
-
-            ListElement {
-                done: false
-                description: "Study math - calculus 4"
-            }
-
+        model: TodoModel {
+            list: toDoList
         }
 
         // Row layout configuration
