@@ -1,9 +1,6 @@
-// Code from Tutorial (QT Company)
-// Using C++ Models in QML {tutorial} - https://www.youtube.com/watch?v=9BcAYDlpuT8
-//
-//  This video tutorial walks you through the process of creating and using a C++
-//  model in QML by creating a to-do list application. If you're new to Qt Quick and
-//  Qt Creator, consider watching the "Getting started with Qt: Hello Quick World" video first:
+// Modified from video:
+// Introduction to Qt – Intro to Qt Quick Controls {tutorial}
+//  - https://www.youtube.com/watch?v=uuhmSZxK1mk
 //
 
 #include <QGuiApplication>
@@ -16,10 +13,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
-    QQuickView view;
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
-    view.setSource(url);
-    view.show();
+
+    QQmlApplicationEngine engine;
+    engine.load("qrc:/main.qml");
 
     return app.exec();
 }
