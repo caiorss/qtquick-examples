@@ -23,9 +23,16 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     // ------------- Register QML Types ---------------//
-    qmlRegisterType<TodoModel>("ToDo", 1, 0, "TodoModel");
-    qmlRegisterUncreatableType<TodoList>("ToDo", 1, 0, "ToDoList"
-                              ,"ToDoList should not be created in QML");
+
+    // qmlRegisterType<TYPE>(  [FULFLY QUAFIED NAME]
+    //                       , [MAJOR VERSION]
+    //                       , [MINOR VERSION]
+    //                       , [NAME] )
+    //
+    qmlRegisterType<TodoModel>("com.mycompany.todoapp.ToDo", 1, 0, "TodoModel");
+    qmlRegisterUncreatableType<TodoList>("com.mycompany.todoapp.ToDo"
+                                         , 1, 0, "ToDoList"
+                                         ,"ToDoList should not be created in QML");
 
     TodoList toDoList;
 

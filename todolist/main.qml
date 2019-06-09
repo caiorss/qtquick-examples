@@ -3,12 +3,12 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3 // RowLayout
 // import io.qt.examples.quick.controls.filesystembrowser 1.0
 
-import ToDo 1.0
+import com.mycompany.todoapp.ToDo 1.0
 
 ApplicationWindow
 {
-    width:  400
-    height: 500
+    width:   400
+    height:  500
     visible: true
 
     ColumnLayout {
