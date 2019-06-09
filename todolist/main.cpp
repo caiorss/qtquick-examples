@@ -29,6 +29,9 @@ int main(int argc, char *argv[])
     //                       , [MINOR VERSION]
     //                       , [NAME] )
     //
+    //  On qml-side (file: main.qml) import the registered type with
+    //  import import com.mycompany.todoapp.ToDo 1.0
+    //
     qmlRegisterType<TodoModel>("com.mycompany.todoapp.ToDo", 1, 0, "TodoModel");
     qmlRegisterUncreatableType<TodoList>("com.mycompany.todoapp.ToDo"
                                          , 1, 0, "ToDoList"
