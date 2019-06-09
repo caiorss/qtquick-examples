@@ -3,7 +3,12 @@ project(qtquick_examples LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Add sub projects 
-add_subdirectory(todolist)
+#-------------------------------------#
+
+# Add sub projects
 add_subdirectory(hello-world)
+add_subdirectory(controls)
+add_subdirectory(todolist)
+
+
 
