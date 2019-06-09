@@ -16,10 +16,10 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
-    QQuickView* view = new QQuickView();
+    QQuickView view;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    view->setSource(url);
-    view->show();
+    view.setSource(url);
+    view.show();
 
     return app.exec();
 }
