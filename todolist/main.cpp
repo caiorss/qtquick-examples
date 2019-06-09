@@ -5,6 +5,7 @@
 //  model in QML by creating a to-do list application. If you're new to Qt Quick and
 //  Qt Creator, consider watching the "Getting started with Qt: Hello Quick World" video first:
 //
+#include <iostream>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -21,28 +22,26 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 
+    // ------------- Register QML Types ---------------//
     qmlRegisterType<TodoModel>("ToDo", 1, 0, "TodoModel");
     qmlRegisterUncreatableType<TodoList>("ToDo", 1, 0, "ToDoList"
                               ,"ToDoList should not be created in QML");
 
-    QQuickView* view = new QQuickView();
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
-    view->setSource(url);
-    view->show();
-
     TodoList toDoList;
 
-    //TodoModel* model = new TodoModel(view);
-    view->rootContext()->setContextProperty("toDoList", &toDoList);
+    QQmlApplicationEngine engine;
 
-    // When Qt object in QML side sends the signal quit, it calls the method
-    // QGuiApplication::quit() of the object app and exits the application.
-    QObject::connect(view->engine(), &QQmlEngine::quit, &app, &QGuiApplication::quit);
+    // ----- Set QT exposed objects to QML before
+    // loading QML GUI layout file.
+    engine.rootContext()->setContextProperty("toDoList", &toDoList);
 
-    // view->rootContext()->setContextProperty("TodoModel", model);
-    //QQmlApplicationEngine engine;
-    // view->rootContext()->setContextProperty("fileSystemModel", model);
+    // ----- Load QML GUI Layout file
+    engine.load("qrc:/main.qml");
+    if(engine.rootObjects().isEmpty())
+        return EXIT_FAILURE;
 
 
-    return app.exec();
+    int status = app.exec();
+    std::cout << " [INFO] Application quit => status code = " << status << std::endl;
+    return status;
 }
