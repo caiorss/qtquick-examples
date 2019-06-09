@@ -16,6 +16,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.load("qrc:/main.qml");
+    if(engine.rootObjects().isEmpty())
+        return EXIT_FAILURE;
 
     return app.exec();
 }
