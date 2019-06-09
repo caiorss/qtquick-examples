@@ -10,6 +10,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Core Quick Widgets REQUIRED)
 
-add_executable(qtquick1 "main.cpp" "qml.qrc" todomodel.cpp todomodel.hpp todolist.cpp todolist.hpp)
+add_executable(qtquick1
+    qml.qrc   # Resource file
+    main.cpp
+    todomodel.cpp todomodel.hpp
+    todolist.cpp todolist.hpp
+    )
 target_compile_definitions(qtquick1 PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(qtquick1 PRIVATE Qt5::Core Qt5::Quick Qt5::Widgets)
