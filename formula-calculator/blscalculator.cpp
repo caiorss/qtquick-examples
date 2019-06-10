@@ -28,6 +28,15 @@ double normal_cdf(double d)
     return c;
 }
 
+void notifyChange(BlsCalculator* obj, double& var, double value)
+{
+    if(var == value || std::isnan(value))
+        return;
+
+    var = value;
+    // std::cout << " [INFO] Updated K - strike price to " << K << std::endl;
+    emit obj->inputChanged();
+}
 
 
 double BlsCalculator::getK() const
@@ -37,10 +46,7 @@ double BlsCalculator::getK() const
 
 void BlsCalculator::setK(double value)
 {
-    if(K == value) return;
-    K = value;
-    std::cout << " [INFO] Updated K - strike price to " << K << std::endl;
-    emit this->inputChanged();
+    notifyChange(this, K, value);
 }
 
 double BlsCalculator::getS() const
@@ -50,9 +56,7 @@ double BlsCalculator::getS() const
 
 void BlsCalculator::setS(double value)
 {
-    if(S == value) return;
-    S = value;
-    emit this->inputChanged();
+    notifyChange(this, S, value);
 }
 
 double BlsCalculator::getT() const
@@ -62,9 +66,7 @@ double BlsCalculator::getT() const
 
 void BlsCalculator::setT(double value)
 {
-    if(T == value) return;
-    T = value;
-    emit this->inputChanged();
+    notifyChange(this, T, value);
 }
 
 double BlsCalculator::getV() const
@@ -74,9 +76,7 @@ double BlsCalculator::getV() const
 
 void BlsCalculator::setV(double value)
 {
-    if(v == value) return;
-    v = value;
-    emit this->inputChanged();
+    notifyChange(this, v, value);
 }
 
 double BlsCalculator::getR() const
@@ -86,9 +86,7 @@ double BlsCalculator::getR() const
 
 void BlsCalculator::setR(double value)
 {
-    if(r == value) return;
-    r = value;
-    emit this->inputChanged();
+    notifyChange(this, r, value);
 }
 
 double BlsCalculator::getQ() const
@@ -98,12 +96,10 @@ double BlsCalculator::getQ() const
 
 void BlsCalculator::setQ(double value)
 {
-    if(q == value) return;
-    q = value;
-    emit this->inputChanged();
+    notifyChange(this, q, value);
 }
 
-double BlsCalculator::callPrice() const
+double BlsCalculator::getCallPrice() const
 {
     int a = 1;
     double b = r;
@@ -120,7 +116,7 @@ double BlsCalculator::callPrice() const
     return Vcall;
 }
 
-double BlsCalculator::putPrice() const
+double BlsCalculator::getPutPrice() const
 {
 
     int a = -1;
