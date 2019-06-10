@@ -8,7 +8,7 @@ import com.mycompany.blscalculator 1.0
 
 ApplicationWindow {
     visible: true
-    width:   640
+    width:   350
     height:  400
     title:   "Eropean Options - Black Scholes Calculator"
 
@@ -32,19 +32,8 @@ ApplicationWindow {
 
     }
 
-    function updateCalculation()
+    function resetForm()
     {
-        /*
-        blsCalc.K = Number(entryK.text)
-        blsCalc.S = Number(entryS.text)
-        blsCalc.T = Number(entryT.text)
-        blsCalc.V = Number(entryV.text)
-        blsCalc.R = Number(entryR.text)
-
-        calcDisplay.text = " Call price = "  + roundDigits(blsCalc.callPrice(), 4)
-                         + "\n Put Price = " + roundDigits(blsCalc.putPrice(),  4)
-     */
-
         blsCalc.K = 50.0
         blsCalc.S = 50.0
         blsCalc.T = 0.5
@@ -55,11 +44,11 @@ ApplicationWindow {
     Component.onCompleted: {
         console.info("Intialized QML UI and update calculations")
         // updateCalculation()
-        blsCalc.K = 50.0
-        blsCalc.S = 50.0
-        blsCalc.T = 0.5
-        blsCalc.V = 0.30
-        blsCalc.R = 0.05
+        setX(Screen.width / 2 - width / 2);
+        setY(Screen.height / 2 - height / 2);
+
+
+        resetForm()
     }
 
     ColumnLayout {
@@ -146,8 +135,8 @@ ApplicationWindow {
 
         Button {
             id:   btnUpdate
-            text: "Update"
-            onClicked: updateCalculation()
+            text: "Reset"
+            onClicked: resetForm()
         }
 
 
@@ -163,11 +152,8 @@ ApplicationWindow {
             TextEdit {
                id:  calcDisplay
 
-               //  background:      "blue"
-               // anchors.fill: parent
-               // text: "Multiline\ntext \n C++ \n QML"
-
-               text: blsCalc.call
+               text: "Call price = " + roundDigits(blsCalc.call, 4)
+                     + "\n Put Price = " + roundDigits(blsCalc.put, 4)
 
                readOnly: true
 
