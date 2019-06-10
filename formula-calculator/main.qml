@@ -4,11 +4,63 @@ import QtQuick.Window 2.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.3
 
+import com.mycompany.blscalculator 1.0
+
 ApplicationWindow {
     visible: true
     width:   640
     height:  400
-    title:   "Window title"
+    title:   "Eropean Options - Black Scholes Calculator"
+
+    // property var blsCalc: blsCalculator
+
+    BlsCalculator{
+        id: blsCalc
+    }
+
+    function roundDigits(number, digits)
+    {
+        if(digits === 2)
+            return Math.round(number * 100) / 100;
+        if(digits === 3)
+            return Math.round(number * 1000) / 1000;
+        if(digits === 4)
+            return Math.round(number * 10000) / 10000;
+        if(digits === 5)
+            return Math.round(number * 100000) / 100000;
+        return number;
+
+    }
+
+    function updateCalculation()
+    {
+        /*
+        blsCalc.K = Number(entryK.text)
+        blsCalc.S = Number(entryS.text)
+        blsCalc.T = Number(entryT.text)
+        blsCalc.V = Number(entryV.text)
+        blsCalc.R = Number(entryR.text)
+
+        calcDisplay.text = " Call price = "  + roundDigits(blsCalc.callPrice(), 4)
+                         + "\n Put Price = " + roundDigits(blsCalc.putPrice(),  4)
+     */
+
+        blsCalc.K = 50.0
+        blsCalc.S = 50.0
+        blsCalc.T = 0.5
+        blsCalc.V = 0.30
+        blsCalc.R = 0.05
+    }
+
+    Component.onCompleted: {
+        console.info("Intialized QML UI and update calculations")
+        // updateCalculation()
+        blsCalc.K = 50.0
+        blsCalc.S = 50.0
+        blsCalc.T = 0.5
+        blsCalc.V = 0.30
+        blsCalc.R = 0.05
+    }
 
     ColumnLayout {
 
@@ -30,31 +82,72 @@ ApplicationWindow {
             Label { text: "K" }
             TextField {
                 id: entryK
+                text: blsCalc.K
+
+                Binding {
+                    target:   blsCalc
+                    property: "K"
+                    value:    Number(entryK.text)
+                }
             }
 
             // Current underlying asset price
             Label { text: "S" }
             TextField{
                 id: entryS
+                text: blsCalc.S
+
+                Binding {
+                    target:   blsCalc
+                    property: "S"
+                    value:    Number(entryS.text)
+                }
             }
 
             // Time in years input
             Label{ text: "T" }
             TextField {
                 id: entryT
+                text: blsCalc.T
+
+                Binding {
+                    target:   blsCalc
+                    property: "T"
+                    value:    Number(entryT.text)
+                }
             }
 
             // Volatility input
             Label{ text: "v (sigma)" }
             TextField{
                 id: entryV
+                text: blsCalc.V
+
+                Binding {
+                    target:   blsCalc
+                    property: "V"
+                    value:    Number(entryV.text)
+                }
             }
 
             Label{ text: "r" }
             TextField{
                 id: entryR
-            }
 
+                text: blsCalc.R
+
+                Binding {
+                    target:   blsCalc
+                    property: "R"
+                    value:    Number(entryR.text)
+                }
+            }
+        }
+
+        Button {
+            id:   btnUpdate
+            text: "Update"
+            onClicked: updateCalculation()
         }
 
 
@@ -72,7 +165,10 @@ ApplicationWindow {
 
                //  background:      "blue"
                // anchors.fill: parent
-               text: "Multiline\ntext \n C++ \n QML"
+               // text: "Multiline\ntext \n C++ \n QML"
+
+               text: blsCalc.call
+
                readOnly: true
 
                anchors {
@@ -83,6 +179,13 @@ ApplicationWindow {
                            right: parent.right;
                            rightMargin: 10;
                        }
+
+//               Binding {
+//                   target:   calcDisplay
+//                   property: "text"
+//                   value:    blsCalc.callPrice()
+//               }
+
             }
         }
 
