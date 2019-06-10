@@ -9,6 +9,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_subdirectory(hello-world)
 add_subdirectory(controls)
 add_subdirectory(todolist)
-
+add_subdirectory(formula-calculator)
 
 
