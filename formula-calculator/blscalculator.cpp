@@ -37,6 +37,7 @@ double BlsCalculator::getK() const
 
 void BlsCalculator::setK(double value)
 {
+    if(K == value) return;
     K = value;
     std::cout << " [INFO] Updated K - strike price to " << K << std::endl;
     emit this->inputChanged();
@@ -49,6 +50,7 @@ double BlsCalculator::getS() const
 
 void BlsCalculator::setS(double value)
 {
+    if(S == value) return;
     S = value;
     emit this->inputChanged();
 }
@@ -60,6 +62,7 @@ double BlsCalculator::getT() const
 
 void BlsCalculator::setT(double value)
 {
+    if(T == value) return;
     T = value;
     emit this->inputChanged();
 }
@@ -71,6 +74,7 @@ double BlsCalculator::getV() const
 
 void BlsCalculator::setV(double value)
 {
+    if(v == value) return;
     v = value;
     emit this->inputChanged();
 }
@@ -82,6 +86,7 @@ double BlsCalculator::getR() const
 
 void BlsCalculator::setR(double value)
 {
+    if(r == value) return;
     r = value;
     emit this->inputChanged();
 }
@@ -93,6 +98,7 @@ double BlsCalculator::getQ() const
 
 void BlsCalculator::setQ(double value)
 {
+    if(q == value) return;
     q = value;
     emit this->inputChanged();
 }
