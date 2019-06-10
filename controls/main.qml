@@ -3,6 +3,8 @@ import QtQuick.Controls 2.1
 import QtQuick.Window 2.0
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2
+
 
 ApplicationWindow {
     visible: true
@@ -12,6 +14,18 @@ ApplicationWindow {
 
     // x: Screen.width / 4
     // y: Screen.height / 4
+
+    // Requires: QtQuick.Dialogs/1.2
+    MessageDialog {
+      id:     msgboxOpenFile
+      icon:   StandardIcon.Warning
+      title:  "Open file dialog"
+      text:   "User selected action open file"
+
+      onAccepted: {
+          console.info(" Dialog closed OK.")
+      }
+    }
 
     Action {
         id:          actionNew
@@ -32,6 +46,7 @@ ApplicationWindow {
         onTriggered: {
             tarea.placeholderText += "To do - open"
             console.info("Menu open document opened")
+            msgboxOpenFile.visible = true
         }
     }
 
