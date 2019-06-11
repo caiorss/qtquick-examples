@@ -3,11 +3,16 @@
 
 #include <QObject>
 
+/** Any class exposed to QML engine must inherit QObject */
 class BlsCalculator : public QObject
 {
     double K, S, T, v, r, q;
 
-    Q_OBJECT
+    /* Schema: Q_PROPERTY(<TYPE> <PROPERTY NAME>
+     *                    READ   <getter Function>
+     *                    WRITE  <setter Function>
+     *                    NOTIFY <SIGNAL Function>) */
+    Q_OBJECT // Necessary for exposing signals and slots to QML engine
     Q_PROPERTY(double K READ getK WRITE setK NOTIFY inputChanged)
     Q_PROPERTY(double S READ getS WRITE setS NOTIFY inputChanged)
     Q_PROPERTY(double T READ getT WRITE setT NOTIFY inputChanged)
@@ -38,8 +43,11 @@ public:
 
 // Events
 signals:
+    // Note: Function implemented by MOC - Meta-Object Compiler
     void inputChanged();
 
+// Functions callable by QObject::connetc callback and also from QML engine
+// slot is just a macro that evaluates to nothing.
 public slots:
     double getCallPrice() const;
     double getPutPrice() const;
