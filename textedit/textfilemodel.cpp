@@ -1,6 +1,7 @@
 #include "textfilemodel.hpp"
 #include <iostream>
 #include <QFile>
+#include <QTextStream>
 
 QUrl
 TextFileModel::file() const
@@ -17,7 +18,7 @@ TextFileModel::setFile(const QUrl &file)
 }
 
 QString
-TextFileModel::text() const
+TextFileModel::read() const
 {
     QFile file(m_file.toLocalFile());
     if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
@@ -26,6 +27,26 @@ TextFileModel::text() const
         return txt;
     }
     return "";
+}
+
+void
+TextFileModel::write(QString const& text)
+{
+    m_textBuffer = text;
+}
+
+void
+TextFileModel::flush()
+{
+    QFile file(m_file.toLocalFile());
+    if(!(file.open(QIODevice::WriteOnly | QIODevice::Text)))
+    {
+        file.close();
+        return;
+    }
+    QTextStream ss(&file);
+    ss << m_textBuffer;
+    file.close();
 }
 
 TextFileModel::TextFileModel(QObject *parent) : QObject(parent)
