@@ -9,10 +9,14 @@ import com.qtdeveloper.textedit 1.0
 ApplicationWindow {
     id:     rectangle
 
-    width:  425
-    height: 500
-    maximumWidth:  425
-    maximumHeight: 500
+    property int window_width:  750
+    property int window_height: 500
+
+    width:  window_width
+    height: window_height
+    title: "C++ QML Basic Interface"
+    // maximumWidth:  425
+    // maximumHeight: 500
 
     // color: "#5bedbc"
     visible: true
@@ -39,6 +43,8 @@ ApplicationWindow {
     }
 
     ColumnLayout {
+        x: 28
+        y: 21
 
         Label {
             id: labelCurrentFile
@@ -54,39 +60,60 @@ ApplicationWindow {
              }
         }
 
-        // --- Text Area with ScrollBar
+        // --- Text Area with ScrollBar --- //
         Flickable {
             id: flickable
-            x: 25
-            y: 100
-            width: 370
-            height: 370
+            x: 27
+            y: 99
+            width: window_width - 50
+            height: 392
             // anchors.fill: parent
             flickableDirection: Flickable.VerticalFlick
 
+
             TextArea.flickable: TextArea {
-                id:       textDisplay
-                text:     tmodel.text
+                id: textDisplay
+                x: 0
+                text: tmodel.text
                 // wrapMode: TextArea.Wrap
 
-                readOnly: true
+                readOnly:false
+                persistentSelection: true
+
+                leftPadding:   6
+                rightPadding:  6
+                topPadding:    0
+                bottomPadding: 0
+
+                // Text color in text area
+                color: "#3fcbe2"
+
+                background: Rectangle {
+                    // background color
+                    color: "black"
+                    border.color: "red"
+                }
+
             }
 
             ScrollBar.vertical: ScrollBar {
                 id: vscrollbar1
                 policy: ScrollBar.AlwaysOn
                 interactive: false
+                width: 10
             }
 
             ScrollBar.horizontal: ScrollBar {
                 id: hscrollbar1
                 policy: ScrollBar.AlwaysOn
                 interactive: false
+                height: 10
             }
 
-            Keys.onUpPressed:   vscrollbar1.decrease()
-            Keys.onDownPressed: vscrollbar1.increase()
-            Keys.onLeftPressed: hscrollbar1.decrease()
+
+            Keys.onUpPressed:    vscrollbar1.decrease()
+            Keys.onDownPressed:  vscrollbar1.increase()
+            Keys.onLeftPressed:  hscrollbar1.decrease()
             Keys.onRightPressed: hscrollbar1.increase()
         }
 
