@@ -110,6 +110,16 @@ ApplicationWindow {
                 height: 10
             }
 
+            focus: true
+
+            Keys.onPressed: {
+                if(event.key === Qt.Key_PageDown)
+                    vscrollbar1.increase()
+
+                if(event.key === Qt.Key_PageUp)
+                    vscrollbar1.decrease()
+
+            }
 
             Keys.onUpPressed:    vscrollbar1.decrease()
             Keys.onDownPressed:  vscrollbar1.increase()
