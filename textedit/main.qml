@@ -51,14 +51,27 @@ ApplicationWindow {
             text: "File: " + tmodel.file
         }
 
-        Button{
-            id:   btnOpenFile
-            text: "Open file"
-            onClicked: {
-                console.info("Button clicked")
-                fileSelectionDlg.visible = true
-             }
+
+        RowLayout{
+            Button{
+                id:   btnOpenFile
+                text: "Open file"
+                onClicked: {
+                    console.info("Selecting file")
+                    fileSelectionDlg.visible = true
+                 }
+            }
+
+            Button{
+                id: btnSave
+                text: "Save file"
+                onClicked: {
+                    tmodel.text = textDisplay.text
+                    tmodel.flush()
+                }
+            }
         }
+
 
         // --- Text Area with ScrollBar --- //
         Flickable {
