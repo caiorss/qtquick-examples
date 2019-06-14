@@ -37,7 +37,7 @@ ApplicationWindow {
         folder: shortcuts.home
 
         onAccepted: {
-            logger.log("File chosed was " + fileSelectionDlg.fileUrl)
+            logger.info("File chosed was " + fileSelectionDlg.fileUrl)
             tmodel.file = fileSelectionDlg.fileUrl
 
         }
@@ -62,7 +62,7 @@ ApplicationWindow {
                 id:   btnOpenFile
                 text: "Open file"
                 onClicked: {
-                    console.info("Selecting file")
+                    logger.info("Selecting file")
                     fileSelectionDlg.visible = true
                  }
             }
@@ -104,7 +104,7 @@ ApplicationWindow {
                 bottomPadding: 0
 
                 // Text color in text area
-                color: "#3fcbe2"
+                color: "#00FF33" // "#3fcbe2"
 
                 background: Rectangle {
                     // background color
