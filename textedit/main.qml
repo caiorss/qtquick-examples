@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Dialogs 1.2
 
 import com.qtdeveloper.textedit 1.0
+import com.qtdeveloper.logger 1.0
 
 ApplicationWindow {
     id:     rectangle
@@ -21,6 +22,10 @@ ApplicationWindow {
     // color: "#5bedbc"
     visible: true
 
+    Logger{
+        id: logger
+    }
+
     TextFileModel {
         id: tmodel
     }
@@ -32,13 +37,13 @@ ApplicationWindow {
         folder: shortcuts.home
 
         onAccepted: {
-            console.log("File chosed was " + fileSelectionDlg.fileUrl)            
+            logger.log("File chosed was " + fileSelectionDlg.fileUrl)
             tmodel.file = fileSelectionDlg.fileUrl
 
         }
 
-        onRejected: {
-            console.log("File selection rejected.")
+        onRejected: {            
+            logger.log("File selection rejected.")
         }
     }
 
