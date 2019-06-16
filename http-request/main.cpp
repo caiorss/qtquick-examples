@@ -10,17 +10,20 @@
 #include <QQmlApplicationEngine>
 #include <QtQuick/QtQuick>
 #include <QQmlContext>
-
+#include <QIcon>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+    app.setWindowIcon(QIcon("qrc:/tray-icon.png"));
 
     QQmlApplicationEngine engine;
     engine.load("qrc:/main.qml");
     if(engine.rootObjects().isEmpty())
         return EXIT_FAILURE;
+
+
 
     return app.exec();
 }
