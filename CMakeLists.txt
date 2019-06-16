@@ -3,7 +3,14 @@ project(qtquick_examples
     DESCRIPTION "Lot of QT Quick examples in a single CMake project"
     LANGUAGES CXX)
 
+# Make whole compilation verbose
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 set(CMAKE_CXX_STANDARD 17)
+
+# set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}"  "-DQT_QML_DEBUG")
+add_definitions(-DQT_QML_DEBUG -DQML_IMPORT_TRACE=1)
+
 
 #-------------------------------------#
 
