@@ -20,6 +20,6 @@ add_subdirectory(controls)
 add_subdirectory(textedit)
 add_subdirectory(todolist)
 add_subdirectory(formula-calculator)
-
+add_subdirectory(http-request)
 
 
