@@ -1,0 +1,47 @@
+* QtQuick - QT/QML Examples 
+
+Description: 
+
+ + Sample Qt5/QtQuick C++ QML project with CMake building  system
+   containing multiple subprojects. 
+
+Subprojects: 
+
+ * [[file:hello-world][file:hello-world]]
+   + Hello world simple window.
+   + Contains examples about:
+     * Simple QML example with properties and Javascript
+
+ * [[file:controls][file:controls]]
+   + QML Window with toolbar and Menubar 
+
+ * [[file:textedit][file:textedit]]
+   * Text editor like Windows notepad with buttons open and save
+     file.
+   * Contains:
+     * QML and C++ Integration 
+     * A C++ class called from QML which is used for reading and
+       saving text files.
+
+ * [[file:http-request][file:http-request]]
+   + QML Window with button, combobox and text area that peforms an
+     http request to a select subreddit, fetches its contents in json
+     and displays it in the window.
+   + Contains examples about:
+     + HTTP request with Javascript/XHR and QML
+     + Combobox model usage
+     + JSON parsing in QML/Javascript 
+
+
+ * [[file:formula-calculator][file:formula-calculator]]
+   * QML app containing a form for computing Black-Scholes formula for
+     European put and call options.
+   * Contains exambples about:
+     * Integration of QML and C++.
+     * A C++ class encapsulating the Black-Scholes formula for
+       European options which is the user interface model that is
+       loaded and called from the QML side.
+
+
+
+
