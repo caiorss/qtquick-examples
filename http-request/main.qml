@@ -5,23 +5,24 @@ import QtQuick.Window 2.0
 
 ApplicationWindow {
     title: "Sample QML HTTP Request"
+    id:     mainWindow
+    objectName: "mainWindow"
 
-    id:     rectangle
-    x: 0
-    y: 0
-
-    width:  425
+    width:  500
     height: 500
     color: "#5bedbc"
     visible: true
+
+    // Variable counter
+    property var counter: 0
+    property var currentURL: "http://old.reddit.com/r/"
+                             + redditCbox.model[redditCbox.currentIndex] + ".json"
+
 
     // Executed when the window defined by this file runs
     Component.onCompleted: {
         console.log(" [INFO] Application started OK")
     }
-
-    // Variable counter
-    property var counter: 0
 
     // Source: https://retifrav.github.io/blog/2018/06/09/qml-xmlhttprequest/
     function request(url, callback) {
@@ -41,51 +42,71 @@ ApplicationWindow {
     }
 
     ColumnLayout {
-        x: 22
-        y: 30
-        width: 382
+        x: 25
+        y: 11
+        width: 450
         height: 345
-
-        Button{
-          id:   button1      // Unique identifier in QT
-          text: "Run Request"          
-
-          onClicked: request("http://old.reddit.com/r/programming.json", function(o){
-              console.log("Button Clicked")
-
-              if(o.status !== 200)
-                 return;
-
-              var json = JSON.parse(o.responseText);
-              console.log("json = " + json)
-              console.log("Length = " + Object.keys(json.data.children).length)
-
-              display.text = "\n"
-
-              for(var t = 0; t < Object.keys(json.data.children).length; t++){
-                  var data = json.data.children[t].data
-                  console.log("title = " + data.title)
-                  display.text += "Title    = " + data.title + "\n";
-                  display.text += "Post ID  = " + data.id + "\n";
-                  display.text += "Upvotes  = " + data.ups + "\n";
-                  display.text += "POSTL    = " + data.permalink + "\n"
-                  display.text += "Shared URL = " + data.url + "\n"
-                  // display.text += "Text  = " + json.data.children[t].data.selftext + "\n";
-                  display.text += "\n----------------------------------\n\n";
-              }
-
-
-          });
-        }
-
         // Multiline scrollable text area
+
+        RowLayout {
+
+            Button{
+              id:   button1      // Unique identifier in QT
+              text: "Run Request"
+
+              onClicked: request(currentURL, function(o){
+                  console.log("Button Clicked")
+
+                  if(o.status !== 200)
+                     return;
+
+                  var json = JSON.parse(o.responseText);
+                  console.log("json = " + json)
+                  console.log("Length = " + Object.keys(json.data.children).length)
+
+                  display.text = "\n"
+
+                  for(var t = 0; t < Object.keys(json.data.children).length; t++){
+                      var data = json.data.children[t].data
+                      console.log("title = " + data.title)
+                      display.text += "Title    = " + data.title + "\n";
+                      display.text += "Post ID  = " + data.id + "\n";
+                      display.text += "Upvotes  = " + data.ups + "\n";
+                      display.text += "POSTL    = " + data.permalink + "\n"
+                      display.text += "Shared URL = " + data.url + "\n"
+                      // display.text += "Text  = " + json.data.children[t].data.selftext + "\n";
+                      display.text += "\n----------------------------------\n\n";
+                  }
+
+
+              });
+            }
+
+            ComboBox {
+                id:  redditCbox
+                currentIndex: 0
+                width: 300
+                model: [ "cpp", "Qt5", "ocaml", "programming" ]
+                displayText: "SUB: " + currentText
+
+//                onCurrentIndexChanged: {
+//                    var subr = redditCbox.model[redditCbox.currentIndex]
+//                    currentURL = "http://old.reddit.com/r/" + subr + ".json"
+//                    console.log(" [INFO] Subreddit changed to URL => " + currentURL)
+//                }
+
+            }
+
+        }
 
         TextScrollBox{
             id: display
+            y: 65
+            width: 450
             text: "My text"
-            width:  400
+            // width:  400
             // fillWidth: parent.fillWidth
-            height: 395
+            height: 400
             // anchors.bottom: parent.bottom
 
             color: "#00FF33" // Text Color
