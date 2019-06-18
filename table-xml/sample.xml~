@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="atome">
+    <column name="id">1</column>
+    <column name="nom">Hydrogène</column>
+    <column name="slug">hydrogene</column>
+    <column name="electron">1</column>
+    <column name="numero">1</column>
+    <column name="symbole">H</column>
+    <column name="info_groupe">1</column>
+    <column name="info_periode">1</column>
+    <column name="info_bloc">s</column>
+</table>

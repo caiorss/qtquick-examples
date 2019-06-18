@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="atome">
+    <column name="id"       rate="3.51" >1</column>
+    <column name="nom"      rate="4.51" >Hydrogène</column>
+    <column name="slug"     rate="1.25" > hydrogene</column>
+    <column name="electron" rate="5.34" > 1</column>
+    <column name="numero"   rate="59.23">1</column>
+    <column name="symbole"  rate="8.45">  H</column>
+    <column name="info_groupe" rate="9.45" >1</column>
+    <column name="info_periode" rate="18.23">1</column>
+    <column name="info_bloc" rate="9.34">s</column>
+</table>

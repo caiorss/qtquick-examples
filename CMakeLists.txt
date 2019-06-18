@@ -22,5 +22,5 @@ add_subdirectory(textedit-plugin)
 add_subdirectory(todolist)
 add_subdirectory(formula-calculator)
 add_subdirectory(http-request)
-
+add_subdirectory(table-xml)
 
