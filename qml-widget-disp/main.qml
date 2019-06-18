@@ -10,11 +10,14 @@ ApplicationWindow {
 
     width:  800
     height: 690
-    color: "black"
+    color: "#2D3238"
     visible: true
 
-    property var currentObject: null
+    // Make window always on Top
+    // See: https://stackoverflow.com/questions/44951046
+    flags:  Qt.WindowStaysOnTopHint
 
+    property var currentObject: null
 
     RowLayout{
         anchors.bottom: parent.bottom
@@ -82,6 +85,30 @@ ApplicationWindow {
                 onClicked: currentObject.destroy()
             }
 
+            CheckBox {
+                id: checkBox
+                width: 30
+                height: 40
+                Text {
+                    // x: 20
+                    y: 15
+                    anchors.left: parent.right
+                    text:  qsTr("On Top")
+                    color: "white"
+                }
+                checked: true
+
+                onCheckStateChanged: {
+                    if(checked){
+                        mainWindow.flags = Qt.WindowStaysOnTopHint
+                        statusBar.text = "Windows always on Top OK."
+                    } else {
+                        mainWindow.flags = Qt.Window
+                        statusBar.text = "Windows reset to default behavior OK."
+                    }
+                }
+            }
+
         } // --- End of RowLayout --- //
 
         // Textbox where user supplies a QML code
@@ -118,6 +145,8 @@ ApplicationWindow
           "
         }
 
-    } // --- EoF - ColumnLayout --- //
+    }
+
+    // --- EoF - ColumnLayout --- //
 
 }
