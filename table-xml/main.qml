@@ -92,8 +92,9 @@ ApplicationWindow {
 
 
     TableView{
-         id: tview
-         anchors.fill: parent
+        id: tview
+        anchors.topMargin: 59
+        anchors.fill: parent
          clip: true
 
          TableViewColumn  { role: "currency" ; title: "Currency"; width: 100 }
@@ -108,5 +109,6 @@ ApplicationWindow {
          model: model_EcbFXRatesXML
 
     }
+
 
 }
