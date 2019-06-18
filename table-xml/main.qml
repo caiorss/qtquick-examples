@@ -98,13 +98,14 @@ ApplicationWindow {
          clip: true
 
          TableViewColumn  { role: "currency" ; title: "Currency"; width: 100 }
-         TableViewColumn  { role: "rate" ;     title: "1 EUR = "; width: 100 }
 
          TableViewColumn { role: "rate" ; title: "1 USD = ";
              delegate: Text {
                  text: roundDigits(model.rate / fxRate_USD2EUR, 2)
              }
          }
+
+         TableViewColumn  { role: "rate" ;     title: "1 EUR = "; width: 100 }
 
          model: model_EcbFXRatesXML
 
