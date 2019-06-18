@@ -56,9 +56,26 @@ ApplicationWindow {
                      *  + https://www.qtcentre.org/threads/61164-QML-Qt-createQmlObject
                      */
                     try{
-                        currentObject = Qt.createQmlObject( qmlEntry.text,
-                                                           mainWindow,
-                                                           "" );
+                        var code = ""
+
+                        if(checkBoxWrapCode.checked === true){
+                             code = "import QtQuick 2.7; import QtQuick.Controls 2.1
+                                        import QtQuick.Window 2.0; import QtQuick.Layouts 1.3
+
+                                        ApplicationWindow
+                                        {
+                                        id: main; visible: true; width:  400;
+                                        height: 400\n\n" + qmlEntry.text + "\n}"
+                        } else
+                        {
+                             code = qmlEntry.text
+                        }
+
+
+                        currentObject = Qt.createQmlObject( code,
+                                                            mainWindow,
+                                                            "" );
+
                         statusBar.text = "Object created. OK.";
 
                     } catch(error)
@@ -85,15 +102,18 @@ ApplicationWindow {
                 onClicked: currentObject.destroy()
             }
 
+            // checkBoxAlwaysOnTop - Keeping this Window on top of all others
             CheckBox {
-                id: checkBox
+                id: checkBoxAlwaysOnTop
                 width: 30
                 height: 40
+
                 Text {
                     // x: 20
                     y: 15
                     anchors.left: parent.right
                     text:  qsTr("On Top")
+                    anchors.leftMargin: -5
                     color: "white"
                 }
                 checked: true
@@ -108,6 +128,24 @@ ApplicationWindow {
                     }
                 }
             }
+
+
+            // checkBoxAlwaysOnTop - Keeping this Window on top of all others
+            CheckBox {
+                id: checkBoxWrapCode
+                width: 30
+                height: 40
+                anchors.left: parent.right
+                Text {
+                    // x: 20
+                    y: 15
+                    anchors.left: parent.right
+                    text:  qsTr("Wrap code")
+                    color: "white"
+                }
+                checked: false
+            }
+
 
         } // --- End of RowLayout --- //
 
