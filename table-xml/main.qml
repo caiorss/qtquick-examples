@@ -82,6 +82,15 @@ ApplicationWindow {
         // background: "cyan"
     }
 
+    Button {
+        id: btnReload
+        x: 283
+        y: 14
+        text: qsTr("Reload Datalink")
+        onClicked: model_EcbFXRatesXML.reload()
+    }
+
+
     TableView{
          id: tview
          anchors.fill: parent
