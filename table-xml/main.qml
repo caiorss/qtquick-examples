@@ -78,7 +78,7 @@ ApplicationWindow {
     Label {
         x: 28;
         y: 5;
-        text: "Echange Rates (Dollar) => 1 USD = \n" + statusMessage
+        text: "Exchange FX Rates => STATUS = \n" + statusMessage
         // background: "cyan"
     }
 
