@@ -1,5 +1,5 @@
-import QtQuick 2.7
-import QtQuick.Controls 2.1
+import QtQuick 2.4
+import QtQuick.Controls 1.4
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.3
 
@@ -81,19 +81,22 @@ ApplicationWindow {
         // background: "cyan"
     }
 
+    TableView{
+         id: tview
+         anchors.fill: parent
+         clip: true
 
-    ListView{
-        anchors.rightMargin: 21
-        anchors.bottomMargin: 20
-        anchors.leftMargin: 21
-        anchors.topMargin: 53
-        anchors.fill: parent
+         TableViewColumn  { role: "currency" ; title: "Currency"; width: 100 }
+         TableViewColumn  { role: "rate" ;     title: "1 EUR = "; width: 100 }
 
-        // model: model
-        // delegate:  Text { text: name + " = " + value + " / rate = " + 4.5 * rate }
+         TableViewColumn { role: "rate" ; title: "1 USD = ";
+             delegate: Text {
+                 text: roundDigits(model.rate / fxRate_USD2EUR, 2)
+             }
+         }
 
-        model:     model_EcbFXRatesXML
-        delegate: Text { text: currency + "\t" + roundDigits(rate / fxRate_USD2EUR, 2) }
+         model: model_EcbFXRatesXML
+
     }
 
 }
