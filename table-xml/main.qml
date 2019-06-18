@@ -12,8 +12,9 @@ ApplicationWindow {
     visible: true
     width:   425
     height:  393
+    title:   "FX - Foreign Exchange Rates Viewer"
 
-    color:   "#0dedaa"
+    color:   "#18eddc"
 
     property string statusMessage: ""
     property var fxRate_USD2EUR: 0.0
