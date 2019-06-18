@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.3
 
 ApplicationWindow {
     id: mainWindow
-    title: "QML Runner"
+    title: "QML Evaluator"
 
     width:  800
     height: 690
