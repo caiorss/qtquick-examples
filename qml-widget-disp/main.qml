@@ -33,9 +33,13 @@ ApplicationWindow {
     {
         x: 39
         y: 12
+
+        // Button panel
         RowLayout
         {
             y: 23
+
+            // btnRunQML - Evaluate QML code typed or pasted by user
             Button
             {
                 id: btnRunQML
@@ -62,6 +66,7 @@ ApplicationWindow {
                 }
             }
 
+            // btnClear - Clear text
             Button
             {
                 id: btnClear
@@ -69,6 +74,7 @@ ApplicationWindow {
                 onClicked: qmlEntry.text = ""
             }
 
+            // btnDestroy - Destroy QML object generated from user QML code
             Button
             {
                 id: btnDestroy
@@ -78,6 +84,7 @@ ApplicationWindow {
 
         } // --- End of RowLayout --- //
 
+        // Textbox where user supplies a QML code
         TextScrollBox {
             id: qmlEntry
             x: 20
@@ -86,6 +93,29 @@ ApplicationWindow {
             height:          mainWindow.height - 200
             color:           "white"
             backgroundColor: "#444646"
+
+            text: "
+import QtQuick 2.7
+import QtQuick.Controls 2.1
+import QtQuick.Window 2.0
+import QtQuick.Layouts 1.3
+
+ApplicationWindow
+{
+   id: main
+   visible: true
+   width:  400
+   height: 400
+
+   Button {
+             id: click
+             text: 'Click me'
+             onClicked: main.color = 'red'
+          }
+
+}
+
+          "
         }
 
     } // --- EoF - ColumnLayout --- //
