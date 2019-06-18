@@ -45,14 +45,20 @@ ApplicationWindow {
 
                     /* Reference:
                      *  + https://doc.qt.io/archives/qt-5.8/qtqml-javascript-dynamicobjectcreation.html
+                     *  + https://wiki.qt.io/QML_Dynamic_Objects
+                     *  + https://www.qtcentre.org/threads/61164-QML-Qt-createQmlObject
                      */
-                    currentObject = Qt.createQmlObject( qmlEntry.text,
-                                                        mainWindow,
-                                                        "" );
-                    if(currentObject == null)
-                        statusBar.text = "Error: " + currentObject.errorString()
-                    else
-                        statusBar.text = "Object created. OK."
+                    try{
+                        currentObject = Qt.createQmlObject( qmlEntry.text,
+                                                           mainWindow,
+                                                           "" );
+                        statusBar.text = "Object created. OK.";
+
+                    } catch(error)
+                    {
+                        statusBar.text = "Error: " + JSON.stringify(error.qmlErrors);
+                    }
+
                 }
             }
 
