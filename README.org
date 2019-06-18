@@ -42,6 +42,16 @@ Subprojects:
        European options which is the user interface model that is
        loaded and called from the QML side.
 
+ * [[file:table-xml][file:table-xml]]
+   * QML app that fetches FX - Foreign Exchange Rates from ECB
+     European Central Bank XML data feed and display it in a table
+     widget.
+     * XML Feed URL: https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+     * Contains Examples About:
+       * XmlListModel with XML namespance 'xlms' 
+       * TableView 
+       * TableViewColumn + delegate 
+
 
 
 
