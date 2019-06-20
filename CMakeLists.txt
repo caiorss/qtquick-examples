@@ -14,6 +14,11 @@ add_definitions(-DQT_QML_DEBUG -DQML_IMPORT_TRACE=1)
 
 #-------------------------------------#
 
+# Target: localib::logger
+add_subdirectory(lib-logger)
+
+#find_package(logger REQUIRED)
+
 # Add sub projects
 add_subdirectory(hello-world)
 add_subdirectory(controls)
@@ -24,3 +29,4 @@ add_subdirectory(formula-calculator)
 add_subdirectory(http-request)
 add_subdirectory(table-xml)
 add_subdirectory(qml-widget-disp)
+

@@ -15,9 +15,12 @@ find_package(Qt5 COMPONENTS Core Quick Widgets REQUIRED)
 
 add_executable(textedit
     main.cpp
-    textfilemodel.cpp textfilemodel.hpp
-    logger.cpp logger.hpp
+    textfilemodel.cpp textfilemodel.hpp    
     qml.qrc)
 target_compile_definitions(textedit PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(textedit PRIVATE Qt5::Core Qt5::Quick)
+target_link_libraries(textedit PRIVATE
+    Qt5::Core
+    Qt5::Quick
+    localib::logger
+    )
 target_compile_definitions(textedit PRIVATE QT_QML_DEBUG  QT_DECLARATIVE_DEBUG)
