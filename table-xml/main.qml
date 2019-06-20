@@ -18,6 +18,7 @@ ApplicationWindow {
 
     property string statusMessage: ""
     property var fxRate_USD2EUR: 0.0
+    property var fxRate_BRL2EUR: 0.0
 
     function roundDigits(number, digits)
     {
@@ -61,8 +62,15 @@ ApplicationWindow {
                 for(var i = 0; i < count; i++)
                     if(get(i).currency === "USD"){
                         fxRate_USD2EUR = get(i).rate
+                        break;                        
+                    }
+
+                for(var j = 0; j < count; j++)
+                    if(get(j).currency === "BRL"){
+                        fxRate_BRL2EUR = get(j).rate
                         break;
                     }
+
 
                 console.log(" [TRACE] fxRate_USD2EUR = " + fxRate_USD2EUR)
 
@@ -103,9 +111,16 @@ ApplicationWindow {
              delegate: Text {
                  text: roundDigits(model.rate / fxRate_USD2EUR, 2)
              }
-         }
+         }                  
 
          TableViewColumn  { role: "rate" ;     title: "1 EUR = "; width: 100 }
+
+         TableViewColumn { role: "rate" ; title: "1 BRL = ";
+             delegate: Text {
+                 text: roundDigits(model.rate / fxRate_BRL2EUR, 2)
+             }
+         }
+
 
          model: model_EcbFXRatesXML
 
