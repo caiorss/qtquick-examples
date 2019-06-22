@@ -38,6 +38,8 @@ public slots:
 
     void drawCircle(double x, double y, double radius);
 
+    void drawText(double x, double y, QString const& text);
+
     double margin_left() const;
     void setMargin_left(double margin_left);
 

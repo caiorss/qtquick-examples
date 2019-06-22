@@ -67,6 +67,17 @@ void CanvasArea::drawCircle(double x, double y, double radius)
     this->drawEllipse(x, y, radius, radius);
 }
 
+void CanvasArea::drawText(double x, double y, QString const& text)
+{
+    m_drawlist.push_back([=](QPainter* painter){
+        painter->save();
+        painter->translate(x, y);
+        painter->scale(1, -1);
+        painter->drawText(QPointF(0.0, 0.0), text);
+        painter->restore();
+    });
+}
+
 void CanvasArea::setPen(QColor color, int width)
 {
     QPen pen(color, width);
