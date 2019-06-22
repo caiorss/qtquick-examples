@@ -141,6 +141,12 @@ CanvasArea::worldToDevice(double x, double y) const
     return {xd, yd};
 }
 
+std::tuple<double, double>
+CanvasArea::deviceToWorld(double x, double y) const
+{
+    return { (x - kx) / sx, (y - ky) / sy };
+}
+
 void CanvasArea::plotCurve(std::function<double (double)> function)
 {
     constexpr int n = 200;

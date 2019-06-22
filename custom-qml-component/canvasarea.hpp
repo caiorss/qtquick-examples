@@ -40,6 +40,9 @@ public slots:
     std::tuple<double, double>
     worldToDevice(double x, double y) const;
 
+    std::tuple<double, double>
+    deviceToWorld(double x, double y) const;
+
     void plotCurve(std::function<double (double)> function);
 
     double canvasWidth() const;
