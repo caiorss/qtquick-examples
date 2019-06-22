@@ -12,6 +12,10 @@ void CanvasArea::paint(QPainter* painter)
 {
     painter->setRenderHints(QPainter::Antialiasing, true);
     // painter->drawLine(QPointF{100.20, 20.50}, QPointF{80.2, 59.34});
+
+    painter->scale(1, -1);
+    painter->translate(m_margin_left, -(this->height() - m_margin_bottom));
+
     for(auto const& draw: m_drawlist)
         draw(painter);
 }
