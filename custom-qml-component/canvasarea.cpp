@@ -3,9 +3,30 @@
 #include <QPainter>
 #include <QPaintDevice>
 
+double CanvasArea::margin_left() const
+{
+    return m_margin_left;
+}
+
+void CanvasArea::setMargin_left(double margin_left)
+{
+    m_margin_left = margin_left;
+}
+
+double CanvasArea::margin_bottom() const
+{
+    return m_margin_bottom;
+}
+
+void CanvasArea::setMargin_bottom(double margin_bottom)
+{
+    m_margin_bottom = margin_bottom;
+}
+
 CanvasArea::CanvasArea()
 {
-
+    m_margin_left   = 20.0;
+    m_margin_bottom = 20.0;
 }
 
 void CanvasArea::paint(QPainter* painter)

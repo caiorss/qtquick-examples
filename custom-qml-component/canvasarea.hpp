@@ -15,6 +15,8 @@ using draw = std::function<void (QPainter*)>;
 class CanvasArea : public QQuickPaintedItem
 {
     std::vector<draw> m_drawlist;
+    double m_margin_left;
+    double m_margin_bottom;
 
     Q_OBJECT
 public:
@@ -25,6 +27,12 @@ public:
 public slots:
     void drawLine(double x1, double y1, double x2, double y2);
     void setPen(QColor color, int width);
+
+    double margin_left() const;
+    void setMargin_left(double margin_left);
+
+    double margin_bottom() const;
+    void setMargin_bottom(double margin_bottom);
 
 private:
 
