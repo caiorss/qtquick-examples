@@ -11,6 +11,7 @@ double CanvasArea::margin_left() const
 void CanvasArea::setMargin_left(double margin_left)
 {
     m_margin_left = margin_left;
+    this->update();
 }
 
 double CanvasArea::margin_bottom() const
@@ -21,6 +22,7 @@ double CanvasArea::margin_bottom() const
 void CanvasArea::setMargin_bottom(double margin_bottom)
 {
     m_margin_bottom = margin_bottom;
+    this->update();
 }
 
 CanvasArea::CanvasArea()
@@ -53,6 +55,7 @@ void CanvasArea::drawLine(double x1, double y1, double x2, double y2)
     m_drawlist.push_back([=](QPainter* p){
         p->drawLine(QPointF(x1, y1), QPointF(x2, y2));
     });
+    this->update();
 }
 
 void CanvasArea::drawEllipse(double x, double y, double a, double b)
@@ -60,11 +63,13 @@ void CanvasArea::drawEllipse(double x, double y, double a, double b)
     m_drawlist.push_back([=](QPainter* p){
         p->drawEllipse(QPointF(x, y), a, b);
     });
+    this->update();
 }
 
 void CanvasArea::drawCircle(double x, double y, double radius)
 {
     this->drawEllipse(x, y, radius, radius);
+    this->update();
 }
 
 void CanvasArea::drawText(double x, double y, QString const& text)
@@ -76,6 +81,7 @@ void CanvasArea::drawText(double x, double y, QString const& text)
         painter->drawText(QPointF(0.0, 0.0), text);
         painter->restore();
     });
+    this->update();
 }
 
 void CanvasArea::setPen(QColor color, int width)
@@ -84,4 +90,5 @@ void CanvasArea::setPen(QColor color, int width)
     m_drawlist.push_back([=](QPainter* p){
         p->setPen(pen);
     });
+    this->update();
 }
