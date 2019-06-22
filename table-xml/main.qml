@@ -10,7 +10,7 @@ import QtQuick.XmlListModel 2.0
 ApplicationWindow {
     id:      rectangle
     visible: true
-    width:   425
+    width:   500
     height:  393
     title:   "FX - Foreign Exchange Rates Viewer"
 
