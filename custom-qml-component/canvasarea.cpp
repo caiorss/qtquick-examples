@@ -96,6 +96,19 @@ void CanvasArea::drawText(double x, double y, QString const& text)
     this->update();
 }
 
+void CanvasArea::drawTextw(double x, double y, const QString &text)
+{
+    m_drawlist.push_back([=](QPainter* painter){
+        auto [xd, yd] = this->worldToDevice(x, y);
+        painter->save();
+        painter->translate(xd, yd);
+        painter->scale(1, -1);
+        painter->drawText(QPointF(0.0, 0.0), text);
+        painter->restore();
+    });
+    this->update();
+}
+
 void CanvasArea::drawAxis()
 {
     m_drawlist.push_back([=](QPainter* painter){
@@ -112,6 +125,10 @@ void CanvasArea::drawSine()
 {
     double xmin = 0.0, xmax = 2 * M_PI, ymin = -1.0, ymax = 1.0;
     this->setBounds(xmin, xmax, ymin, ymax);
+
+    this->drawTextw(M_PI / 2.0, 1.0, "(PI / 2, 1.0)");
+    this->drawTextw(M_PI, 0.0, "(PI , 0.0)");
+
     this->plotCurve(static_cast<double (*) (double)>(std::sin));
 }
 

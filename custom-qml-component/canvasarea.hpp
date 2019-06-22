@@ -56,6 +56,9 @@ public slots:
 
     void drawText(double x, double y, QString const& text);
 
+    // Draw text in world's coordinate
+    void drawTextw(double x, double y, QString const& text);
+
     void drawAxis();
 
     void drawSine();
