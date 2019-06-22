@@ -1,5 +1,7 @@
 #include "canvasarea.hpp"
 
+#include <cmath>
+
 #include <QPainter>
 #include <QPaintDevice>
 
@@ -84,6 +86,16 @@ void CanvasArea::drawText(double x, double y, QString const& text)
     this->update();
 }
 
+void CanvasArea::drawAxis()
+{
+    m_drawlist.push_back([=](QPainter* painter){
+        // painter->setPen();
+        painter->drawLine(QPointF(0, 0), QPointF(this->canvasWidth(), 0));
+        painter->drawLine(QPointF(0, 0), QPointF(0, this->canvasHeight()));
+    });
+    this->update();
+}
+
 void CanvasArea::setPen(QColor color, int width)
 {
     QPen pen(color, width);
@@ -91,4 +103,14 @@ void CanvasArea::setPen(QColor color, int width)
         p->setPen(pen);
     });
     this->update();
+}
+
+double CanvasArea::canvasWidth() const
+{
+    return this->width() - 2 * m_margin_left;
+}
+
+double CanvasArea::canvasHeight() const
+{
+    return this->height() - 2 * m_margin_bottom;
 }

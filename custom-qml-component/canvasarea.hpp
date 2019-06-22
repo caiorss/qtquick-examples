@@ -32,6 +32,9 @@ public slots:
     void clear();
     void setPen(QColor color, int width);
 
+    double canvasWidth() const;
+    double canvasHeight() const;
+
     void drawLine(double x1, double y1, double x2, double y2);
 
     void drawEllipse(double x, double y, double a, double b);
@@ -39,6 +42,8 @@ public slots:
     void drawCircle(double x, double y, double radius);
 
     void drawText(double x, double y, QString const& text);
+
+    void drawAxis();
 
     double margin_left() const;
     void setMargin_left(double margin_left);
