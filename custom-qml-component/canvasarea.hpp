@@ -18,6 +18,9 @@ class CanvasArea : public QQuickPaintedItem
     double m_margin_left;
     double m_margin_bottom;
 
+    double xmin, xmax, ymin, ymax;
+    double sx, sy, kx, ky;
+
     Q_OBJECT
 public:
     CanvasArea();
