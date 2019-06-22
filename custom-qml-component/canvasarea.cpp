@@ -96,6 +96,48 @@ void CanvasArea::drawAxis()
     this->update();
 }
 
+
+
+void CanvasArea::drawSine()
+{
+    constexpr int n = 200;
+   //  this->setLimits(0.0, -1.0, 2 * M_PI, 1.0);
+
+    double xmin = 0.0, xmax = 2 * M_PI, ymin = -1.0, ymax = 1.0;
+
+    double step_x = (xmax - xmin) / n;
+
+    m_drawlist.push_back([=](QPainter* p){
+        double yd, xd;  // Device coordinates
+
+        double w = this->canvasWidth();
+        double h = this->canvasHeight();
+        double sx = w / (xmax - xmin);
+        double sy = h / (ymax - ymin) ;
+        double kx = - xmin * sx;
+        double ky = - ymin * sy;
+
+        QPainterPath path;
+
+        double x = xmin, y; // Chart coordinate
+        y = sin(x);
+        xd = x * sx + kx;
+        yd = y * sy + ky;
+
+        path.moveTo(xd, yd);
+        for(int i = 0; i < n; i ++)
+        {
+            x += step_x;
+            y = sin(x);
+            xd = x * sx + kx;
+            yd = y * sy + ky;
+            path.lineTo(xd, yd);
+        }
+        p->drawPath(path);
+    });
+    this->update();
+}
+
 void CanvasArea::setPen(QColor color, int width)
 {
     QPen pen(color, width);

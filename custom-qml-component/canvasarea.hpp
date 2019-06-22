@@ -45,6 +45,8 @@ public slots:
 
     void drawAxis();
 
+    void drawSine();
+
     double margin_left() const;
     void setMargin_left(double margin_left);
 
