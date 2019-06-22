@@ -41,6 +41,12 @@ void CanvasArea::paint(QPainter* painter)
         draw(painter);
 }
 
+void CanvasArea::clear()
+{
+    m_drawlist.clear();
+    emit this->updatePaint();
+}
+
 void CanvasArea::drawLine(double x1, double y1, double x2, double y2)
 {
     m_drawlist.push_back([=](QPainter* p){

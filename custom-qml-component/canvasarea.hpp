@@ -24,9 +24,15 @@ public:
 
     void paint(QPainter* painter) override;
 
+// Note: All methods in Slots can be called by the QML engine
+// slots: is just a macro that tells the MOC meta object compiler
+// the methods that it will generate metadata and reflection data.
 public slots:
-    void drawLine(double x1, double y1, double x2, double y2);
+
+    void clear();
     void setPen(QColor color, int width);
+
+    void drawLine(double x1, double y1, double x2, double y2);
 
     double margin_left() const;
     void setMargin_left(double margin_left);
