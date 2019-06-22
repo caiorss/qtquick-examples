@@ -54,6 +54,13 @@ void CanvasArea::drawLine(double x1, double y1, double x2, double y2)
     });
 }
 
+void CanvasArea::drawEllipse(double x, double y, double a, double b)
+{
+    m_drawlist.push_back([=](QPainter* p){
+        p->drawEllipse(QPointF(x, y), a, b);
+    });
+}
+
 void CanvasArea::setPen(QColor color, int width)
 {
     QPen pen(color, width);

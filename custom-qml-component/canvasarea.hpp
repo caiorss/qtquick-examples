@@ -34,6 +34,8 @@ public slots:
 
     void drawLine(double x1, double y1, double x2, double y2);
 
+    void drawEllipse(double x, double y, double a, double b);
+
     double margin_left() const;
     void setMargin_left(double margin_left);
 
