@@ -44,6 +44,13 @@ void CanvasArea::paint(QPainter* painter)
     painter->scale(1, -1);
     painter->translate(m_margin_left, -(this->height() - m_margin_bottom));
 
+    double w = this->canvasWidth();
+    double h = this->canvasHeight();
+    sx = w / (xmax - xmin);
+    sy = h / (ymax - ymin);
+    kx = - xmin * sx;
+    ky = - ymin * sy;
+
     for(auto const& draw: m_drawlist)
         draw(painter);
 }
