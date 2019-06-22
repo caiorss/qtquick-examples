@@ -35,6 +35,8 @@ public slots:
     void clear();
     void setPen(QColor color, int width);
 
+    void setBounds(double xmin, double ymin, double xmax, double ymax);
+
     double canvasWidth() const;
     double canvasHeight() const;
 

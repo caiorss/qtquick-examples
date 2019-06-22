@@ -147,6 +147,21 @@ void CanvasArea::setPen(QColor color, int width)
     this->update();
 }
 
+void CanvasArea::setBounds(double xmin, double ymin, double xmax, double ymax)
+{
+    this->xmin = xmin;
+    this->xmax = xmax;
+    this->ymin = ymin;
+    this->ymax = ymax;
+    double w = this->canvasWidth();
+    double h = this->canvasHeight();
+    sx = w / (xmax - xmin);
+    sy = h / (ymax - ymin);
+    kx = - xmin * sx;
+    ky = - ymin * sy;
+    this->update();
+}
+
 double CanvasArea::canvasWidth() const
 {
     return this->width() - 2 * m_margin_left;
