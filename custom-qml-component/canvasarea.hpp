@@ -38,8 +38,9 @@ public slots:
     void setBounds(double xmin, double xmax, double ymin, double ymax);
 
     std::tuple<double, double>
-    WorldToDevice(double x, double y) const;
+    worldToDevice(double x, double y) const;
 
+    void plotCurve(std::function<double (double)> function);
 
     double canvasWidth() const;
     double canvasHeight() const;
