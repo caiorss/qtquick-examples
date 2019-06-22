@@ -35,7 +35,7 @@ public slots:
     void clear();
     void setPen(QColor color, int width);
 
-    void setBounds(double xmin, double ymin, double xmax, double ymax);
+    void setBounds(double xmin, double xmax, double ymin, double ymax);
 
     std::tuple<double, double>
     WorldToDevice(double x, double y) const;

@@ -157,7 +157,7 @@ void CanvasArea::setPen(QColor color, int width)
     this->update();
 }
 
-void CanvasArea::setBounds(double xmin, double ymin, double xmax, double ymax)
+void CanvasArea::setBounds(double xmin, double xmax, double ymin, double ymax)
 {
     this->xmin = xmin;
     this->xmax = xmax;
