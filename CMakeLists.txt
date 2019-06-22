@@ -29,4 +29,4 @@ add_subdirectory(formula-calculator)
 add_subdirectory(http-request)
 add_subdirectory(table-xml)
 add_subdirectory(qml-widget-disp)
-
+add_subdirectory(custom-qml-component)
