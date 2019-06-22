@@ -62,6 +62,11 @@ void CanvasArea::drawEllipse(double x, double y, double a, double b)
     });
 }
 
+void CanvasArea::drawCircle(double x, double y, double radius)
+{
+    this->drawEllipse(x, y, radius, radius);
+}
+
 void CanvasArea::setPen(QColor color, int width)
 {
     QPen pen(color, width);

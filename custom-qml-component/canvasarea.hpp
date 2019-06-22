@@ -36,6 +36,8 @@ public slots:
 
     void drawEllipse(double x, double y, double a, double b);
 
+    void drawCircle(double x, double y, double radius);
+
     double margin_left() const;
     void setMargin_left(double margin_left);
 
