@@ -44,7 +44,8 @@ void CanvasArea::paint(QPainter* painter)
 void CanvasArea::clear()
 {
     m_drawlist.clear();
-    emit this->updatePaint();
+    // Readraw canvas
+    this->update();
 }
 
 void CanvasArea::drawLine(double x1, double y1, double x2, double y2)
