@@ -162,6 +162,14 @@ void CanvasArea::setBounds(double xmin, double ymin, double xmax, double ymax)
     this->update();
 }
 
+std::tuple<double, double>
+CanvasArea::worldToDevice(double x, double y) const
+{
+    double xd = sx * x + kx;
+    double yd = sy * y + ky;
+    return {xd, yd};
+}
+
 double CanvasArea::canvasWidth() const
 {
     return this->width() - 2 * m_margin_left;

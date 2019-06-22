@@ -37,6 +37,10 @@ public slots:
 
     void setBounds(double xmin, double ymin, double xmax, double ymax);
 
+    std::tuple<double, double>
+    WorldToDevice(double x, double y) const;
+
+
     double canvasWidth() const;
     double canvasHeight() const;
 
