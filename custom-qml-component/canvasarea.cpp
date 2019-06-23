@@ -53,6 +53,7 @@ void CanvasArea::paint(QPainter* painter)
 
     for(auto const& draw: m_drawlist)
         draw(painter);
+
 }
 
 void CanvasArea::clear()
@@ -129,7 +130,8 @@ void CanvasArea::drawSine()
     this->drawTextw(M_PI / 2.0, 1.0, "(PI / 2, 1.0)");
     this->drawTextw(M_PI, 0.0, "(PI , 0.0)");
 
-    this->plotCurve(static_cast<double (*) (double)>(std::sin));
+    // this->plotCurve(static_cast<double (*) (double)>(std::sin));
+    this->plotCurvePoints(static_cast<double (*) (double)>(std::sin));
 }
 
 void CanvasArea::setPen(QColor color, int width)
@@ -187,8 +189,46 @@ void CanvasArea::plotCurve(std::function<double (double)> function)
         }
         p->drawPath(path);
     });
+   this->update();
+
+}
+
+
+void CanvasArea::plotCurvePoints(std::function<double (double)> function)
+{
+    // Number of points or interval [Xmin, Xmax] in the X axis
+    int n = 200;
+
+    m_drawlist.push_back([=](QPainter* p){
+        QPainterPath path;
+
+        // Save drawing context
+        p->save();
+        // Set pen to draw rounded points
+        p->setPen(QPen(Qt::red,  3.0, Qt::SolidLine, Qt::RoundCap));
+
+        double step_x = (this->xmax - this->xmin) / n;
+
+        double x = xmin, y; // Chart coordinate
+        y = function(x);
+        auto [xd, yd] = this->worldToDevice(x, y);
+
+        p->drawPoint(QPointF(xd, yd));
+
+        for(int i = 0; i < n; i ++)
+        {
+            x += step_x;
+            y = function(x);
+            auto [xd, yd] = this->worldToDevice(x, y);
+            p->drawPoint(QPointF(xd, yd));
+        }
+        // Restore drawing context
+        p->restore();
+    });
     this->update();
 }
+
+
 
 double CanvasArea::canvasWidth() const
 {

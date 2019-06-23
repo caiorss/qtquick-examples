@@ -45,6 +45,8 @@ public slots:
 
     void plotCurve(std::function<double (double)> function);
 
+    void plotCurvePoints(std::function<double (double)> function);
+
     double canvasWidth() const;
     double canvasHeight() const;
 
