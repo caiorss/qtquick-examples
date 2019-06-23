@@ -59,7 +59,9 @@ ApplicationWindow {
                 canvas.drawAxis()
 
                 canvas.setPen("blue", 3);
-                canvas.drawSine();
+                // canvas.drawSine();
+                canvas.setBounds(0, 10, 0.0, 100.0)
+                canvas.plotPoints([0, 1, 2, 3, 5, 6, 10], [0, 1, 4, 9, 25, 36, 100])
 
 /*
                 canvas.setPen("blue", 3);
