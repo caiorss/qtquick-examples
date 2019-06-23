@@ -110,6 +110,27 @@ void CanvasArea::drawTextw(double x, double y, const QString &text)
     this->update();
 }
 
+
+void CanvasArea::plotPoints(QVector<double> const& xs, QVector<double> const& ys)
+{
+    int n = std::min(xs.size(), ys.size());
+
+    m_drawlist.push_back([=](QPainter* p){
+
+        QPainterPath path;
+
+        path.moveTo(this->worldToDeviceQPoint(xs[0], ys[0]));
+
+        for(int i = 1; i < n; i ++)
+        {
+            path.lineTo(this->worldToDeviceQPoint(xs[i], ys[i]));
+        }
+        p->drawPath(path);
+    });
+    this->update();
+
+}
+
 void CanvasArea::drawAxis()
 {
     m_drawlist.push_back([=](QPainter* painter){

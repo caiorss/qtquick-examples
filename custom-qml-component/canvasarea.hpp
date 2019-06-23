@@ -37,20 +37,22 @@ public slots:
 
     void setBounds(double xmin, double xmax, double ymin, double ymax);
 
+    double canvasWidth() const;
+    double canvasHeight() const;
+
+    /** @brief Converts world coordinates to screen/device coordinates */
     std::tuple<double, double>
     worldToDevice(double x, double y) const;
 
     QPointF worldToDeviceQPoint(double x, double y) const;
 
+    /** @brief Converts screen coordinates to device coordinates */
     std::tuple<double, double>
     deviceToWorld(double x, double y) const;
 
     void plotCurve(std::function<double (double)> function);
 
     void plotCurvePoints(std::function<double (double)> function);
-
-    double canvasWidth() const;
-    double canvasHeight() const;
 
     void drawLine(double x1, double y1, double x2, double y2);
 
@@ -62,6 +64,9 @@ public slots:
 
     // Draw text in world's coordinate
     void drawTextw(double x, double y, QString const& text);
+
+    /** @brief Draw points in World's coordinates */
+    void plotPoints(QVector<double> const& xs, QVector<double> const& ys);
 
     void drawAxis();
 
