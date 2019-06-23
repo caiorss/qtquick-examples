@@ -160,6 +160,14 @@ CanvasArea::worldToDevice(double x, double y) const
     return {xd, yd};
 }
 
+QPointF
+CanvasArea::worldToDeviceQPoint(double x, double y) const
+{
+    double xd = sx * x + kx;
+    double yd = sy * y + ky;
+    return {xd, yd};
+}
+
 std::tuple<double, double>
 CanvasArea::deviceToWorld(double x, double y) const
 {

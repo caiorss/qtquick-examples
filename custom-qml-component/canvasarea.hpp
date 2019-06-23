@@ -40,6 +40,8 @@ public slots:
     std::tuple<double, double>
     worldToDevice(double x, double y) const;
 
+    QPointF worldToDeviceQPoint(double x, double y) const;
+
     std::tuple<double, double>
     deviceToWorld(double x, double y) const;
 
