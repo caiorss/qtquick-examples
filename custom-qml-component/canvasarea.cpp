@@ -8,7 +8,7 @@
 
 CanvasArea::CanvasArea()
 {
-    m_margin_left   = 20.0;
+    m_margin_left   = 50.0;
     m_margin_bottom = 20.0;
     this->setBounds(0, 0, this->canvasWidth(), this->canvasHeight());
 }
